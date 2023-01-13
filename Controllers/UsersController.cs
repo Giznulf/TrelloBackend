@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using Microsoft.EntityFrameworkCore;
 using TrelloBackend.Models;
 
 namespace TrelloBackend.Controllers
@@ -9,48 +13,120 @@ namespace TrelloBackend.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        // Users admin = new (1, "admin", "qwerty");
-        //Users tim = new(2, "tim", "tim");
-        //Users user = new(3, "user", "password");
+        private readonly UsersContext _context;
 
-       /* List<Users> users = new List<Users>
+        public UsersController(UsersContext context)
         {
-            new (1, "admin", "qwerty"),
-            new (2, "tim", "tim"),
-            new (3, "user", "password")
-        };
+            _context = context;
+        }
 
-
-        [HttpPost]
-        public async Task Post(HttpResponse response, HttpRequest request)
+        // GET: api/Users
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            bool otvet = false;
+          if (_context.Users == null)
+          {
+              return NotFound();
+          }
+            return await _context.Users.ToListAsync();
+        }
+
+        // GET: api/Users/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<User>> GetUsers(int id)
+        {
+          if (_context.Users == null)
+          {
+              return NotFound();
+          }
+            var users = await _context.Users.FindAsync(id);
+
+            if (users == null)
+            {
+                return NotFound();
+            }
+
+            return users;
+        }
+
+        // PUT: api/Users/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutUsers(int id, User users)
+        {
+            if (id != users.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(users).State = EntityState.Modified;
+
             try
             {
-                var usera = await request.ReadFromJsonAsync<Users>();
-                if (usera != null)
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UsersExists(id))
                 {
-                    foreach (var user in users)
-                    {
-                        if (user.name == usera.name & user.password == usera.password)
-                        {
-                            otvet = !otvet;
-                            break;
-                        }
-                    }
-                    await response.WriteAsJsonAsync(otvet);
+                    return NotFound();
                 }
                 else
                 {
-                    throw new Exception("Некорректные данные");
+                    throw;
                 }
             }
-            catch (Exception)
-            {
-                response.StatusCode = 400;
-                await response.WriteAsJsonAsync(new { message = "Некорректные данные" });
-            }
-        }*/
 
+            return NoContent();
+        }
+
+        // POST: api/Users
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public bool PostUsers(User user)
+        {
+            if (_context.Users == null)
+            {
+                return false;//Problem("Entity set 'UsersContext.Users'  is null.");
+            }
+
+            var users = _context.Users.ToList();
+
+            foreach(User u in users)
+            {
+                if (u.Name == user.Name & u.Password == user.Password) return true;
+            }
+            return false;
+           
+            
+            /*_context.Users.Add(user);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetUsers", new { id = user.Id }, user);*/
+        }
+
+        // DELETE: api/Users/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUsers(int id)
+        {
+            if (_context.Users == null)
+            {
+                return NotFound();
+            }
+            var users = await _context.Users.FindAsync(id);
+            if (users == null)
+            {
+                return NotFound();
+            }
+
+            _context.Users.Remove(users);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        private bool UsersExists(int id)
+        {
+            return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
     }
 }

@@ -6,14 +6,13 @@ namespace TrelloBackend.Models
     {
         public DbSet<User> Users { get; set; } = null!;
 
-
-        public UsersContext() => Database.EnsureCreated(); // создаем базу данных при первом обращении
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public UsersContext(DbContextOptions<UsersContext> options)
+               : base(options)
         {
-            optionsBuilder.UseMySql("server=localhost;user=root;password=12345678;database=usersdb;",
-                new MySqlServerVersion(new Version(8, 0, 31)));
+            Database.EnsureDeleted();
+            Database.EnsureCreated();
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasData(

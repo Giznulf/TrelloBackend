@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrelloBackend", "TrelloBackend.csproj", "{F9FD827B-0256-4F9E-94C8-31671DAAB884}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9FD827B-0256-4F9E-94C8-31671DAAB884}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9FD827B-0256-4F9E-94C8-31671DAAB884}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9FD827B-0256-4F9E-94C8-31671DAAB884}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9FD827B-0256-4F9E-94C8-31671DAAB884}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0C6B3759-0DE3-49EA-9EB9-08EA4D444D2A}
+	EndGlobalSection
+EndGlobal
