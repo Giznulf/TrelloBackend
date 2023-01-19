@@ -11,55 +11,57 @@ namespace TrelloBackend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class Users1Controller : ControllerBase
+    public class CardsController : ControllerBase
     {
-        private readonly UsersContext _context;
+        private readonly TrelloContext _context;
 
-        public Users1Controller(UsersContext context)
+        public CardsController(TrelloContext context)
         {
             _context = context;
         }
 
-        // GET: api/Users1
+        // GET: api/Cards
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<Card>>> GetCards()
         {
-          if (_context.Users == null)
+          if (_context.Cards == null)
           {
               return NotFound();
           }
-            return await _context.Users.ToListAsync();
+            return await _context.Cards.ToListAsync();
         }
 
-        // GET: api/Users1/5
+        // GET: api/Cards/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUsers(int id)
+        public async Task<ActionResult<IEnumerable<Card>>> GetCard(int id)
         {
-          if (_context.Users == null)
+          if (_context.Cards == null)
           {
               return NotFound();
           }
-            var users = await _context.Users.FindAsync(id);
 
-            if (users == null)
+            var cards = await _context.Cards.Where(p=> p.ColumnId == id).ToListAsync();
+            
+
+            if (cards == null)
             {
                 return NotFound();
             }
 
-            return users;
+            return cards;
         }
 
-        // PUT: api/Users1/5
+        // PUT: api/Cards/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsers(int id, User users)
+        public async Task<IActionResult> PutCard(int id, Card card)
         {
-            if (id != users.Id)
+            if (id != card.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(users).State = EntityState.Modified;
+            _context.Entry(card).State = EntityState.Modified;
 
             try
             {
@@ -67,7 +69,7 @@ namespace TrelloBackend.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UsersExists(id))
+                if (!CardExists(id))
                 {
                     return NotFound();
                 }
@@ -80,45 +82,44 @@ namespace TrelloBackend.Controllers
             return NoContent();
         }
 
-        // POST: api/Users1
+        // POST: api/Cards
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<User>> PostUsers(User users)
+        public async Task<ActionResult<Card>> PostCard(Card card)
         {
-          if (_context.Users == null)
+          if (_context.Cards == null)
           {
-              return Problem("Entity set 'UsersContext.Users'  is null.");
+              return Problem("Entity set 'TrelloContext.Cards'  is null.");
           }
-       //   if (users.name == usersa.name) { return users; };
-            _context.Users.Add(users);
+            _context.Cards.Add(card);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUsers", new { id = users.Id }, users);
+            return CreatedAtAction("GetCard", new { id = card.Id }, card);
         }
 
-        // DELETE: api/Users1/5
+        // DELETE: api/Cards/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUsers(int id)
+        public async Task<IActionResult> DeleteCard(int id)
         {
-            if (_context.Users == null)
+            if (_context.Cards == null)
             {
                 return NotFound();
             }
-            var users = await _context.Users.FindAsync(id);
-            if (users == null)
+            var card = await _context.Cards.FindAsync(id);
+            if (card == null)
             {
                 return NotFound();
             }
 
-            _context.Users.Remove(users);
+            _context.Cards.Remove(card);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool UsersExists(int id)
+        private bool CardExists(int id)
         {
-            return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Cards?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

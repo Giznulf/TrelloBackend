@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\source\\repos\\TrelloBackend\\TrelloBackend\\TrelloBackend.csproj": {}
+    "C:\\Users\\User\\source\\repos\\Giznulf\\TrelloBackend\\TrelloBackend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\source\\repos\\TrelloBackend\\TrelloBackend\\TrelloBackend.csproj": {
+    "C:\\Users\\User\\source\\repos\\Giznulf\\TrelloBackend\\TrelloBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\TrelloBackend\\TrelloBackend\\TrelloBackend.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\Giznulf\\TrelloBackend\\TrelloBackend.csproj",
         "projectName": "TrelloBackend",
-        "projectPath": "C:\\Users\\User\\source\\repos\\TrelloBackend\\TrelloBackend\\TrelloBackend.csproj",
+        "projectPath": "C:\\Users\\User\\source\\repos\\Giznulf\\TrelloBackend\\TrelloBackend.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\TrelloBackend\\TrelloBackend\\obj\\",
+        "outputPath": "C:\\Users\\User\\source\\repos\\Giznulf\\TrelloBackend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -42,29 +42,33 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[6.0.11, )"
-            },
-            "Microsoft.EntityFrameworkCore.InMemory": {
-              "target": "Package",
-              "version": "[6.0.11, )"
+              "version": "[7.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
-              "version": "[6.0.11, )"
+              "version": "[7.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.11, )"
+              "version": "[7.0.2, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration": {
+              "target": "Package",
+              "version": "[7.0.2, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[7.0.0, )"
+              "version": "[7.0.2, )"
             },
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
-              "version": "[6.0.2, )"
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
@@ -86,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
