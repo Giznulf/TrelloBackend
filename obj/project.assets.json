@@ -10692,11 +10692,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\source\\repos\\Giznulf\\TrelloBackend\\TrelloBackend.csproj",
+      "projectUniqueName": "C:\\Users\\User\\source\\repos\\Новая папка\\TrelloBackend.csproj",
       "projectName": "TrelloBackend",
-      "projectPath": "C:\\Users\\User\\source\\repos\\Giznulf\\TrelloBackend\\TrelloBackend.csproj",
+      "projectPath": "C:\\Users\\User\\source\\repos\\Новая папка\\TrelloBackend.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\source\\repos\\Giznulf\\TrelloBackend\\obj\\",
+      "outputPath": "C:\\Users\\User\\source\\repos\\Новая папка\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",

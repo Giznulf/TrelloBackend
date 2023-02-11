@@ -83,27 +83,33 @@ namespace TrelloBackend.Controllers
         // POST: api/User
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public string PostUsers(User user)
+        public async Task<ActionResult<User>> PostUsers(User user)
         {
             if (_context.Users == null)
             {
-                return  "Ошибка доступа к серверу";
+                return  Problem("Ошибка доступа к серверу");
             }
-
+            User _user = new();
             var users = _context.Users.ToList();
 
             foreach(User u in users)
             {
                 if (u.Name == user.Name & u.Password == user.Password)
                 {
-                    return "Авторизация прошла успешно";
+                    _user = u;
+                    break;
+                }
+                else
+                {
+                    _user.Name = "";
+                    _user.Password = "";
                 }
             }
-            return  "Неверный логин или пароль";
-           
+            return Ok (_user);
+
             /*_context.Users.Add(user);
             await _context.SaveChangesAsync();
-            return CreatedAtAction("GetUsers", new { id = user.Id }, user);*/
+            */
         }
 
         // DELETE: api/User/5
